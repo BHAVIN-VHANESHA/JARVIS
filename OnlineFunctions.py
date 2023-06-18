@@ -1,6 +1,11 @@
 import requests
 import wikipedia
 import pywhatkit as kit
+from bs4 import BeautifulSoup
+from requests import get
+from BasicFunctions import Speak, Listen
+
+
 # from email.message import EmailMessage
 # import smtplib
 # from email import config
@@ -61,3 +66,28 @@ def get_random_joke():
 def get_random_advice():
     res = requests.get("https://api.adviceslip.com/advice").json()
     return res['slip']['advice']
+
+'''
+def currloc_temperature():
+    IP_Address = get('https://api.ipify.org').text
+    url = 'https://get.geojs.io/v1/ip/geo/' + IP_Address + '.json'
+    geo_reqeust = get(url)
+    geo_data = geo_reqeust.json()
+    city = geo_data['city']
+    search = f"temperature in {city}"
+    url_1 = f"https://www.google.com/search?q={search}"
+    r = get(url_1)
+    data = BeautifulSoup(r.text, "html.parser")
+    temp = data.find("div", class_="BNeawe").text
+    Speak(f"current {search} is {temp}")
+'''
+
+
+def Temperature():
+    Speak("tell the name of place")
+    city = Listen()
+    url = f"https://www.google.com/search?q=temperature in {city}"
+    r = requests.get(url)
+    data = BeautifulSoup(r.text, "html.parser")
+    temperature = data.find("div", class_="BNeawe").text
+    Speak(f"the temperature outside is {temperature}")
