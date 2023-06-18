@@ -1,0 +1,2 @@
+use below command to upgrade all the installed python packages
+pip freeze | %{$_.split('==')[0]} | %{pip install --upgrade $_}
