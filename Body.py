@@ -63,8 +63,8 @@ def Start():
             search_query = Listen().lower()
             results = search_on_wikipedia(search_query)
             Speak(f"According to Wikipedia, {results}")
-            Speak("For your convenience, I am printing it on the screen sir.")
-            print(results)
+            # Speak("For your convenience, I am printing it on the screen sir.")
+            # print(results)
 
         elif 'open youtube' in query:
             Speak('What do you want to play on Youtube  llsir?')
